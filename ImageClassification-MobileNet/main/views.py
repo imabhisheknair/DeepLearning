@@ -25,7 +25,7 @@ def find(request):
     preprocessed_img = prepare_img(img)
     predictions = mobile.predict(preprocessed_img)
     results = imagenet_utils.decode_predictions(predictions)
-    prediction = str(results[0][0][1]).capitalize()
+    prediction = str(results[0][0][1]).title()
     if prediction.count('_') > 0:
         prediction = prediction.replace('_', ' ')
     confidence = str(results[0][0][2])
