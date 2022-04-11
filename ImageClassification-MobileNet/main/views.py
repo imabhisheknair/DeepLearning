@@ -25,12 +25,11 @@ def find(request):
     preprocessed_img = prepare_img(img)
     predictions = mobile.predict(preprocessed_img)
     results = imagenet_utils.decode_predictions(predictions)
-    prediction = str(results[0][0][1])
+    prediction = str(results[0][0][1]).capitalize()
     if prediction.count('_') > 0:
         prediction = prediction.replace('_', ' ')
     confidence = str(results[0][0][2])
     confidence = confidence[2:4]+'%'
-    # return HttpResponse('<br><br><br><center><h1> Its '+ str(results[0][0][1]) +'!!!<br><br><br> Confidence: '+ str(results[0][0][2]) +' </h1></center>')
     return JsonResponse({'message': 'success', 'pred': prediction, 'conf': confidence})
 
 
